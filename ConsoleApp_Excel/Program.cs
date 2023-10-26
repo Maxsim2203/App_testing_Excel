@@ -11,6 +11,7 @@ internal class Program
         bool ind = true;
         while (ind)
         {
+            //Делаем простой вывод на экран
             Console.WriteLine("Выберите действие (стрелками переместите курсор на нужный пункт меню и нажмите ENTER):");
             int top = Console.CursorTop;
             int y = top;
@@ -70,14 +71,14 @@ internal class Program
                     Console.WriteLine("три");
                 }
                 }
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { } // || (Console.ReadKey().Key != ConsoleKey.Escape)) { }
+            while ((Console.ReadKey().Key != ConsoleKey.Enter) //|| (Console.ReadKey().Key != ConsoleKey.Escape)) { }
             Console.Clear();
-           
             //if (Console.ReadKey().Key != ConsoleKey.Escape)
               //  ind = false;
             //return;
         }
     }
+
 }
 
 
