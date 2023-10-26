@@ -71,7 +71,7 @@ internal class Program
                     Console.WriteLine("три");
                 }
                 }
-            while ((Console.ReadKey().Key != ConsoleKey.Enter) //|| (Console.ReadKey().Key != ConsoleKey.Escape)) { }
+            while (Console.ReadKey().Key != ConsoleKey.Enter) //|| (Console.ReadKey().Key != ConsoleKey.Escape)) { }
             Console.Clear();
             //if (Console.ReadKey().Key != ConsoleKey.Escape)
               //  ind = false;
