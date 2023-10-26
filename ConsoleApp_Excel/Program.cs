@@ -18,7 +18,7 @@ internal class Program
 
             Console.WriteLine("1. Указать путь к файлу с данными");
             Console.WriteLine("2. Указать наименование товара и вывести список клентов, заказавших товар");
-            Console.WriteLine("3. Изменение контактного лица клиентов по критериям");
+           //Console.WriteLine("3. Изменение контактного лица клиентов по критериям");
             Console.WriteLine("4. Определить золотого клиента");
 
             int down = Console.CursorTop;
