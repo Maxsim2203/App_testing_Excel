@@ -89,7 +89,7 @@ internal class Program
             Console.Clear();
             if (key == ConsoleKey.Escape)
             {
-               Console.WriteLine("ППрограмма завершила работу. До свидания.");
+               Console.WriteLine("ППрограмма завершила работу. До свидания."); //Два П т.к по нажатию клавиши ESC убирается первый символ 
                break;
             }
         }
