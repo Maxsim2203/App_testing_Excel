@@ -68,16 +68,30 @@ internal class Program
                     if (exist == false)
                     {
                         Console.Clear();
-                        Console.WriteLine("Путь к файлу указан неверно!!!");
+                        Console.WriteLine("Путь к файлу указан неверно!");
                     }
                        
                 else if (y == top + 1)
                     {
-                        Console.WriteLine("два");
+                    if (exist == true)
+                    {
+                      Console.Clear();
+                      Console.WriteLine("Укажите наименование товара");
                     }
+                    if (exist == false)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Товар не выбран!");
+                    }
+                  Console.Clear();
+                   
+                }
                 else if (y == top + 2)
                     {
-                        Console.WriteLine("три");
+                    Console.Clear();
+                    Console.WriteLine("три");
+                     
+                    
                     }
                 else if (y == top + 3)
                 {
