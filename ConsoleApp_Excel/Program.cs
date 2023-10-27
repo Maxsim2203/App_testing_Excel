@@ -77,7 +77,11 @@ internal class Program
                     {
                         Console.WriteLine("три");
                     }
+                else if (y == top + 3)
+                {
+                    Console.WriteLine("четыре");
                 }
+            }
             Console.WriteLine("ENTER - продолжение работы");
             Console.WriteLine("ESC - выход");
             key = Console.ReadKey().Key;
