@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.IO;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
+//using Excel = Microsoft.Office.Interop.Excel;
 
 internal class Program
 {
@@ -87,17 +89,32 @@ internal class Program
                    
                 }
                 else if (y == top + 2)
-                    {
-                    Console.Clear();
-                    Console.WriteLine("три");
-                     
-                    
-                    }
+                {
+                    //string pathToFile = "D:\\1.xlsx";
+                    ////Открываем книгу.                                                                                                                                                        
+                    //Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+                    ////Выбираем таблицу(лист).
+                    //Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+                    //ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Товары;
+
+                    //// Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
+                    //int numCol = 2;
+
+                    //Range usedColumn = ObjWorkSheet.UsedRange.Columns[numCol];
+                    //System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
+                    //string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
+
+                    //// Выходим из программы Excel.
+                    //ObjExcel.Quit();
+
+
+                }
                 else if (y == top + 3)
                 {
                     Console.WriteLine("четыре");
                 }
             }
+                 
             Console.WriteLine("ENTER - продолжение работы");
             Console.WriteLine("ESC - выход");
             key = Console.ReadKey().Key;
@@ -113,23 +130,22 @@ internal class Program
 }
 
 
-/*string pathToFile = @"D:\data.xlsx";
-//Console.WriteLine("Hello, World!");
-//Создаём приложение.
-Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
-//Открываем книгу.                                                                                                                                                        
-Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-//Выбираем таблицу(лист).
-Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
-ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Товары;
+//string pathToFile = @"D:\data.xlsx";
+////Console.WriteLine("Hello, World!");
+////Создаём приложение.
+//Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+////Открываем книгу.                                                                                                                                                        
+//Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+////Выбираем таблицу(лист).
+//Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
+//ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Товары;
 
-// Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-int numCol = 2;
+//// Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
+//int numCol = 2;
 
-Range usedColumn = ObjWorkSheet.UsedRange.Columns[numCol];
-System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
-string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
+//Range usedColumn = ObjWorkSheet.UsedRange.Columns[numCol];
+//System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
+//string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
 
-// Выходим из программы Excel.
-ObjExcel.Quit();
-*/
+//// Выходим из программы Excel.
+//ObjExcel.Quit();
