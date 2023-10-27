@@ -6,7 +6,8 @@ using System.Security.Cryptography;
 using System.IO;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Spreadsheet;
-//using Excel = Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Data;
 
 internal class Program
 {
@@ -67,45 +68,50 @@ internal class Program
                         Console.Clear();
                         Console.WriteLine("Файл существует.");
                     }
-                    if (exist == false)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Путь к файлу указан неверно!");
-                    }
-                       
+                if (exist == false)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Путь к файлу указан неверно!");
+                }
+
                 else if (y == top + 1)
-                    {
+                {
                     if (exist == true)
                     {
-                      Console.Clear();
-                      Console.WriteLine("Укажите наименование товара");
+                        Console.Clear();
+                        Console.WriteLine("Укажите наименование товара");
                     }
                     if (exist == false)
                     {
                         Console.Clear();
                         Console.WriteLine("Товар не выбран!");
                     }
-                  Console.Clear();
-                   
+                    Console.Clear();
+
                 }
                 else if (y == top + 2)
                 {
                     string pathToFile = "D:\\1.xlsx";
-                    //Открываем книгу.                                                                                                                                                        
+                    ////Открываем книгу.                                                                                                                                                        
                     Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(pathToFile, 0, false, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-                    //Выбираем таблицу(лист).
+                    ////Выбираем таблицу(лист).
                     Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet;
-                    ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Товары;
+                    ObjWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook;
 
                     // Указываем номер столбца (таблицы Excel) из которого будут считываться данные.
-                    int numCol = 2;
+                    int numCol = 4;
 
-                    Range usedColumn = ObjWorkSheet.UsedRange.Columns[numCol];
+                    Range usedColumn = ObjWorkSheet.Column[numCol];
                     System.Array myvalues = (System.Array)usedColumn.Cells.Value2;
                     string[] strArray = myvalues.OfType<object>().Select(o => o.ToString()).ToArray();
 
-                    //Выходим из программы Excel.
+                    ////Выходим из программы Excel.
                     ObjExcel.Quit();
+
+                    //Создание экземпляра Workbook
+                    Workbook workbook = new Workbook();
+
+                    //Получение первой рабочей страницы
                 }
                 else if (y == top + 3)
                 {
