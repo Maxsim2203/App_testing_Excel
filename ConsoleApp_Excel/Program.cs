@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+
 internal class Program
 {
     private static void Main(string[] args)
@@ -9,7 +12,7 @@ internal class Program
         //using DocumentFormat.OpenXml.Packaging;
         //using DocumentFormat.OpenXml.Spreadsheet;
         bool ind = true;
-        while (ind)
+        while (ind = true)
         {
             //Делаем простой вывод на экран
             Console.WriteLine("Выберите действие (стрелками переместите курсор на нужный пункт меню и нажмите ENTER):");
@@ -18,7 +21,7 @@ internal class Program
 
             Console.WriteLine("1. Указать путь к файлу с данными");
             Console.WriteLine("2. Указать наименование товара и вывести список клентов, заказавших товар");
-           //Console.WriteLine("3. Изменение контактного лица клиентов по критериям");
+            Console.WriteLine("3. Изменить контактное лицо клиена по критериям");
             Console.WriteLine("4. Определить золотого клиента");
 
             int down = Console.CursorTop;
@@ -51,35 +54,42 @@ internal class Program
             
                 if (y == top)
                 {
-                    Console.Write("");
+                    //Console.Write("");
                     Console.Write("Введите полный путь к файлу: ");
-                    string? path_name = Console.ReadLine();
-                    bool exist = File.Exists(path_name);
+                    string? path_file = Console.ReadLine();
+                    bool exist = File.Exists(path_file);
                     if (exist == true)
                     {
-                        Console.Write("Файл существует, для продолжения работы нажмите ENTER...ESC - конец работы");
+                        Console.Clear();
+                        Console.WriteLine("Файл существует.");
                     }
                     if (exist == false)
                     {
-                        Console.Write("Путь к файлу указан неверно, для продолжения работы нажмите ENTER...ESC - конец работы");
+                        Console.Clear();
+                        Console.WriteLine("Путь к файлу указан неверно!!!");
                     }
+                       
                 else if (y == top + 1)
-                {
-                    Console.WriteLine("два");
-                }
+                    {
+                        Console.WriteLine("два");
+                    }
                 else if (y == top + 2)
-                {
-                    Console.WriteLine("три");
+                    {
+                        Console.WriteLine("три");
+                    }
                 }
-                }
-            while (Console.ReadKey().Key != ConsoleKey.Enter) //|| (Console.ReadKey().Key != ConsoleKey.Escape)) { }
+            Console.WriteLine("ENTER - продолжение работы");
+            Console.WriteLine("ESC - выход");
+            key = Console.ReadKey().Key;
+            while ((key != ConsoleKey.Enter) & (key != ConsoleKey.Escape)) { }
             Console.Clear();
-            //if (Console.ReadKey().Key != ConsoleKey.Escape)
-              //  ind = false;
-            //return;
+            if (key == ConsoleKey.Escape)
+            {
+               Console.WriteLine("ППрограмма завершила работу. До свидания.");
+               break;
+            }
         }
     }
-
 }
 
 
