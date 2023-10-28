@@ -82,6 +82,9 @@ internal class Program
                 Console.WriteLine("Укажите наименование товара: ");
                 string? nam_tov = Console.ReadLine();
                 XLWorkbook workbook;
+                //path_file = '@' + '"' + path_file +'"';
+                //Console.WriteLine(path_file);
+                path_file = @"D:\1.xlsx";
                 using (workbook = new XLWorkbook(path_file))
                 {
                     var worksheet = workbook.Worksheets.First();
@@ -94,8 +97,8 @@ internal class Program
 
                     var row = cell.WorksheetRow();
 
-                    Console.WriteLine(row.Cell("A").Value);
-                    Console.WriteLine(row.Cell("B").Value);
+                    Console.Write(row.Cell("A").Value + " ");
+                    Console.Write(row.Cell("B").Value + " ");
                     Console.WriteLine(row.Cell("D").Value);
                 }
             }
