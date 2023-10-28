@@ -88,25 +88,60 @@ internal class Program
                 using (workbook = new XLWorkbook(path_file))
                 {
                     // Получение первого листа из книги
-                    var worksheet = workbook.Worksheet(1);
+                    var worksheet = workbook.Worksheets.First();
                     
                     // Определение первой и последней строки в листе
                     var firstRow = worksheet.FirstRowUsed();
                     var lastRow = worksheet.LastRowUsed();
 
                     // Определение столбца, в котором будет производиться поиск
-                    var column = worksheet.Column("B");
-
-                    var columnCells = column.CellsUsed();
-                    var cell = columnCells.First(c => c.Value.ToString().Contains(nam_tov));
-                    var row = cell.WorksheetRow();
-                    foreach (row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
+                    //var column = worksheet.Column("B");
+                    //var columnCells = column.CellsUsed();
+                    //var cell = columnCells.FirstOrDefault();
+                    foreach (var row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
                     {
-                        Console.Write(row.Cell("A").Value + " ");
-                        Console.Write(row.Cell("B").Value + " ");
-                        Console.WriteLine(row.Cell("D").Value);
+                        if (row.Cell("B").Value.ToString() == nam_tov)
+                        {
+                            Console.Write(row.Cell("A").Value + " ");
+                            Console.Write(row.Cell("B").Value + " ");
+                            Console.WriteLine(row.Cell("D").Value);
+                            //Console.WriteLine(cell);
+                        }
+                        
                     }
-                      
+
+
+                        /*var cell = columnCells.F;
+                        // Получение значения ячейки
+                        //var cell = columnCells.First(c => c.Value.ToString().Contains(nam_tov));
+                        //var cell = columnCells.(1);
+
+                       
+                        Console.Write(cellValue);
+                        Console.WriteLine(nam_tov);
+
+                        var currentCell = columnCells.Cast<Cell>().FirstOrDefault();
+                        // Обработка каждой строки
+                        //foreach (var cell in row.CellsUsed())
+
+
+                        foreach (var row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
+                        {
+                            // Получение значения ячейки
+                            //var cell = columnCells.First(c => c.Value.ToString().Contains(nam_tov));
+                            //var cell = columnCells.(1);
+
+                            var cellValue = currentCell.Value.ToString();
+                            Console.Write(cellValue);
+                            Console.WriteLine(nam_tov);
+
+                            if (cellValue != nam_tov)
+                            {
+                                Console.Write(row.Cell("A").Value + " ");
+                                Console.Write(row.Cell("B").Value + " ");
+                                Console.WriteLine(row.Cell("D").Value);*/
+                            
+                        
                 }
             }
             else if (y == top + 2)
