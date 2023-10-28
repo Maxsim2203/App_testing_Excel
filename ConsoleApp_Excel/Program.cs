@@ -19,7 +19,8 @@ internal class Program
         //using DocumentFormat.OpenXml.Packaging;
         //using DocumentFormat.OpenXml.Spreadsheet;
         bool ind = true;
-        while (ind = true)
+        string? path_file = " ";
+        while (ind == true)
         {
             //Делаем простой вывод на экран
             Console.WriteLine("Выберите действие (стрелками переместите курсор на нужный пункт меню и нажмите ENTER):");
@@ -58,11 +59,11 @@ internal class Program
             }
 
             Console.CursorTop = down;
-            string? path_file;
+
             if (y == top)
             {
                 Console.Write("Введите полный путь к файлу: ");
-                string? path_file = Console.ReadLine();
+                path_file = Console.ReadLine();
                 bool exist = File.Exists(path_file);
                 if (exist == true)
                 {
@@ -106,7 +107,7 @@ internal class Program
             {
                 Console.WriteLine("четыре");
             }
-            
+            //Console.WriteLine(y);
             Console.WriteLine("ENTER - продолжение работы");
             Console.WriteLine("ESC - выход");
             key = Console.ReadKey().Key;
@@ -115,7 +116,7 @@ internal class Program
             if (key == ConsoleKey.Escape)
             {
                Console.WriteLine(y);
-               Console.WriteLine("ППрограмма завершила работу. До свидания."); //Два П т.к по нажатию клавиши ESC убирается первый символ 
+               Console.WriteLine("ППрограмма завершила работу. До свидания."); //Два П т.к по нажатию  ESC убирается первый символ 
                break;
             }
         }
