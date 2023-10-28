@@ -87,19 +87,26 @@ internal class Program
                 path_file = @"D:\1.xlsx";
                 using (workbook = new XLWorkbook(path_file))
                 {
-                    var worksheet = workbook.Worksheets.First();
+                    // Получение первого листа из книги
+                    var worksheet = workbook.Worksheet(1);
+                    
+                    // Определение первой и последней строки в листе
+                    var firstRow = worksheet.FirstRowUsed();
+                    var lastRow = worksheet.LastRowUsed();
 
+                    // Определение столбца, в котором будет производиться поиск
                     var column = worksheet.Column("B");
 
                     var columnCells = column.CellsUsed();
-
                     var cell = columnCells.First(c => c.Value.ToString().Contains(nam_tov));
-
                     var row = cell.WorksheetRow();
-
-                    Console.Write(row.Cell("A").Value + " ");
-                    Console.Write(row.Cell("B").Value + " ");
-                    Console.WriteLine(row.Cell("D").Value);
+                    foreach (row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
+                    {
+                        Console.Write(row.Cell("A").Value + " ");
+                        Console.Write(row.Cell("B").Value + " ");
+                        Console.WriteLine(row.Cell("D").Value);
+                    }
+                      
                 }
             }
             else if (y == top + 2)
