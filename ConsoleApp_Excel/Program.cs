@@ -20,6 +20,12 @@ internal class Program
         //using DocumentFormat.OpenXml.Spreadsheet;
         bool ind = true;
         string? path_file = " ";
+        string? kod_tov = " ";
+        string? kol_tov = " ";
+        string? kod_cli = " ";
+        string? naim_cli = " ";
+        string? cost_tov = " ";
+        string? lll = " "; 
         while (ind == true)
         {
             //Делаем простой вывод на экран
@@ -87,61 +93,107 @@ internal class Program
                 path_file = @"D:\1.xlsx";
                 using (workbook = new XLWorkbook(path_file))
                 {
-                    // Получение первого листа из книги
-                    var worksheet = workbook.Worksheets.First();
-                    
-                    // Определение первой и последней строки в листе
-                    var firstRow = worksheet.FirstRowUsed();
-                    var lastRow = worksheet.LastRowUsed();
+                        // Получение первого листа из книги
+                        var worksheet_1 = workbook.Worksheet(1);
 
-                    // Определение столбца, в котором будет производиться поиск
-                    //var column = worksheet.Column("B");
-                    //var columnCells = column.CellsUsed();
-                    //var cell = columnCells.FirstOrDefault();
-                    foreach (var row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
-                    {
-                        if (row.Cell("B").Value.ToString() == nam_tov)
+                        // Определение первой и последней строки в листе
+                        var firstRow_1 = worksheet_1.FirstRowUsed();
+                        var lastRow_1 = worksheet_1.LastRowUsed();
+
+                        // Находим на 1 листе ячейку с наименованием указанного товара
+                        // и запоминаем код и стоимость товара
+                        foreach (var row in worksheet_1.Rows(firstRow_1.RowNumber(), lastRow_1.RowNumber()))
                         {
-                            Console.Write(row.Cell("A").Value + " ");
-                            Console.Write(row.Cell("B").Value + " ");
-                            Console.WriteLine(row.Cell("D").Value);
-                            //Console.WriteLine(cell);
+                            if (row.Cell("B").Value.ToString() == nam_tov)
+                            {
+                                kod_tov = row.Cell("A").Value.ToString();
+                                cost_tov = row.Cell("D").Value.ToString();
+                            }
                         }
-                        
-                    }
 
-
-                        /*var cell = columnCells.F;
-                        // Получение значения ячейки
-                        //var cell = columnCells.First(c => c.Value.ToString().Contains(nam_tov));
-                        //var cell = columnCells.(1);
-
-                       
-                        Console.Write(cellValue);
-                        Console.WriteLine(nam_tov);
-
-                        var currentCell = columnCells.Cast<Cell>().FirstOrDefault();
-                        // Обработка каждой строки
-                        //foreach (var cell in row.CellsUsed())
-
-
-                        foreach (var row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
+                    // Находим на 3 листе ячейку с кодом указанного товара
+                    // и запоминаем код клиента 
+                    var worksheet_3 = workbook.Worksheet(3);
+                        var firstRow_3 = worksheet_3.FirstRowUsed();
+                        var lastRow_3 = worksheet_3.LastRowUsed();
+                        foreach (var row in worksheet_3.Rows(firstRow_3.RowNumber(), lastRow_3.RowNumber()))
                         {
+                            if (row.Cell("B").Value.ToString() == kod_tov)
+                            {
+                                kod_cli = row.Cell("C").Value.ToString();
+                                kol_tov = row.Cell("E").Value.ToString();
+                            }
+
+                        // Находим на 2 листе ячейку с кодом клиента
+                        // и запоминаем наименование клиента
+                        var worksheet_2 = workbook.Worksheet(2);
+                            var firstRow_2 = worksheet_2.FirstRowUsed();
+                            var lastRow_2 = worksheet_2.LastRowUsed();
+                            foreach (var row2 in worksheet_2.Rows(firstRow_2.RowNumber(), lastRow_2.RowNumber()))
+                            {
+                                if (row2.Cell("A").Value.ToString() == kod_cli)
+                                {
+                                    naim_cli = row.Cell("B").Value.ToString();
+                                }
+                            }
+
+                            Console.Write(naim_cli, " ", cost_tov, " ", kol_tov);
+
+                        }
+                            //Console.Write(row.Cell("A").Value + " ");
+                            //Console.Write(row.Cell("B").Value + " ");
+                            //Console.WriteLine(row.Cell("D").Value);
+                            //Console.WriteLine(cell);
+
+                        // Определение столбца, в котором будет производиться поиск
+                        //var column = worksheet.Column("B");
+                        //var columnCells = column.CellsUsed();
+                        //var cell = columnCells.FirstOrDefault();
+
+                        /*foreach (var row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
+                        {
+                            if (row.Cell("B").Value.ToString() == nam_tov)
+                            {
+                                Console.Write(row.Cell("A").Value + " ");
+                                Console.Write(row.Cell("B").Value + " ");
+                                Console.WriteLine(row.Cell("D").Value);
+                                //Console.WriteLine(cell);
+                            }
+
+                        }
+
+                            /*var cell = columnCells.F;
                             // Получение значения ячейки
                             //var cell = columnCells.First(c => c.Value.ToString().Contains(nam_tov));
                             //var cell = columnCells.(1);
 
-                            var cellValue = currentCell.Value.ToString();
+
                             Console.Write(cellValue);
                             Console.WriteLine(nam_tov);
 
-                            if (cellValue != nam_tov)
+                            var currentCell = columnCells.Cast<Cell>().FirstOrDefault();
+                            // Обработка каждой строки
+                            //foreach (var cell in row.CellsUsed())
+
+
+                            foreach (var row in worksheet.Rows(firstRow.RowNumber(), lastRow.RowNumber()))
                             {
-                                Console.Write(row.Cell("A").Value + " ");
-                                Console.Write(row.Cell("B").Value + " ");
-                                Console.WriteLine(row.Cell("D").Value);*/
-                            
-                        
+                                // Получение значения ячейки
+                                //var cell = columnCells.First(c => c.Value.ToString().Contains(nam_tov));
+                                //var cell = columnCells.(1);
+
+                                var cellValue = currentCell.Value.ToString();
+                                Console.Write(cellValue);
+                                Console.WriteLine(nam_tov);
+
+                                if (cellValue != nam_tov)
+                                {
+                                    Console.Write(row.Cell("A").Value + " ");
+                                    Console.Write(row.Cell("B").Value + " ");
+                                    Console.WriteLine(row.Cell("D").Value);*/
+
+                    
+                
                 }
             }
             else if (y == top + 2)
