@@ -69,11 +69,11 @@ internal class Program
                     Console.Clear();
                     Console.WriteLine("Файл существует.");
                 }
-                if (exist == false)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Путь к файлу указан неверно!");
-                }
+                 if (exist == false)
+                 {
+                 Console.Clear();
+                 Console.WriteLine("Путь к файлу указан неверно!");
+                 }
             }
             else if (y == top + 1)
             {
