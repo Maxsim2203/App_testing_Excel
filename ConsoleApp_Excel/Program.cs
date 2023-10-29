@@ -198,8 +198,12 @@ internal class Program
                     {
                         Console.WriteLine("Организация не найдена. Повторите попытку.");
                     }
+                    else
+                    {
+                     Console.WriteLine("Изменения занесены в таблицу");
+                    }
                 }
-                Console.WriteLine("Изменения занесены в таблицу");
+               
             }
             else if (y == top + 3)
             {
