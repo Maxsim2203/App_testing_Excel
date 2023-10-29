@@ -10,6 +10,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
 using static ClosedXML.Excel.XLWorkbook;
 using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 
 internal class Program
 {
@@ -108,6 +109,7 @@ internal class Program
                                 kod_tov = row.Cell("A").Value.ToString();
                                 cost_tov = row.Cell("D").Value.ToString();
                             }
+                           
                         }
 
                 // Находим на 3 листе ячейку с кодом указанного товара и запоминаем код клиента 
@@ -143,7 +145,8 @@ internal class Program
                             }
                         }
                 }
-                Console.WriteLine("Товар не найден!");
+                Console.Clear();
+                Console.WriteLine("Не найдено!");
             }
             else if (y == top + 2)
             {
