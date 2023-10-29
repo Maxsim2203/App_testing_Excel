@@ -145,7 +145,7 @@ internal class Program
                             }
                         }
                 }
-                Console.WriteLine("Товар не найден!!!");
+                Console.WriteLine("Товар не найден!");
             }
             else if (y == top + 2)
             {
