@@ -138,10 +138,8 @@ internal class Program
                                 int kol_tov_ = Int32.Parse(kol_tov);
                                 int cost_tov_ = Int32.Parse(cost_tov);
                                 int summ_zak_ = kol_tov_ * cost_tov_;
-                                string summ_zak = Convert.ToString(summ_zak_);
-                                                      
+                                string summ_zak = Convert.ToString(summ_zak_);               
                                 Console.WriteLine(naim_cli + " " +  kol_tov + " " + summ_zak + " " + date_zak);
-                                
                             }
                         }
                 }
