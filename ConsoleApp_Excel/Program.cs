@@ -10,7 +10,6 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
 using static ClosedXML.Excel.XLWorkbook;
 using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
 
 internal class Program
 {
@@ -26,7 +25,9 @@ internal class Program
         string? kod_cli = " ";
         string? naim_cli = " ";
         string? cost_tov = " ";
-        string? date_zak = " "; 
+        string? date_zak = " ";
+        bool check_1 = false; //Контроль наличия товара
+        bool check_2 = false; //Контроль наличия заказа
         while (ind == true)
         {
             //Делаем простой вывод на экран
@@ -106,54 +107,83 @@ internal class Program
                         {
                             if (row.Cell("B").Value.ToString() == nam_tov)
                             {
+                                check_1 = true;
                                 kod_tov = row.Cell("A").Value.ToString();
                                 cost_tov = row.Cell("D").Value.ToString();
                             }
-                           
                         }
 
                 // Находим на 3 листе ячейку с кодом указанного товара и запоминаем код клиента 
                 var worksheet_3 = workbook.Worksheet(3);
                 var firstRow_3 = worksheet_3.FirstRowUsed();
                 var lastRow_3 = worksheet_3.LastRowUsed();
-                    foreach (var row_3 in worksheet_3.Rows(firstRow_3.RowNumber(), lastRow_3.RowNumber()))
-                    {
-                        if (row_3.Cell("B").Value.ToString() == kod_tov)
+                        foreach (var row_3 in worksheet_3.Rows(firstRow_3.RowNumber(), lastRow_3.RowNumber()))
                         {
-                            kod_cli = row_3.Cell("C").Value.ToString();  //287 - Чай
-                            kol_tov = row_3.Cell("E").Value.ToString();  //5 - для первого заказа 10 - для второго
-                            date_zak = row_3.Cell("F").Value.ToString(); //14.03.2023 - для первого заказа 22.06.2023 - для второго
-                            // Находим на 2 листе ячейку с кодом клиента
-                           // и запоминаем наименование клиента
-                            var worksheet_2 = workbook.Worksheet(2);
-                            var firstRow_2 = worksheet_2.FirstRowUsed();
-                            var lastRow_2 = worksheet_2.LastRowUsed();
-                            foreach (var row_2 in worksheet_2.Rows(firstRow_2.RowNumber(), lastRow_2.RowNumber()))
+                            if (row_3.Cell("B").Value.ToString() == kod_tov)
                             {
-                                if (row_2.Cell("A").Value.ToString() == kod_cli)
+                                check_2 = true;
+                                kod_cli = row_3.Cell("C").Value.ToString();  //287 - Чай
+                                kol_tov = row_3.Cell("E").Value.ToString();  //5 - для первого заказа 10 - для второго
+                                date_zak = row_3.Cell("F").Value.ToString(); //14.03.2023 - для первого заказа 22.06.2023 - для второго
+                                
+                                // Находим на 2 листе ячейку с кодом клиента и  запоминаем наименование клиента
+                                var worksheet_2 = workbook.Worksheet(2);
+                                var firstRow_2 = worksheet_2.FirstRowUsed();
+                                var lastRow_2 = worksheet_2.LastRowUsed();
+                                foreach (var row_2 in worksheet_2.Rows(firstRow_2.RowNumber(), lastRow_2.RowNumber()))
                                 {
-                                    naim_cli = row_2.Cell("B").Value.ToString();
+                                    if (row_2.Cell("A").Value.ToString() == kod_cli)
+                                    {
+                                        naim_cli = row_2.Cell("B").Value.ToString();
+                                    }
                                 }
+
+                                date_zak = date_zak.Substring(0, date_zak.Length - 8);
+                                int kol_tov_ = Int32.Parse(kol_tov);
+                                int cost_tov_ = Int32.Parse(cost_tov);
+                                int summ_zak_ = kol_tov_ * cost_tov_;
+                                string summ_zak = Convert.ToString(summ_zak_);
+                                                      
+                                Console.WriteLine(naim_cli + " " +  kol_tov + " " + summ_zak + " " + date_zak);
+                                
                             }
-                            date_zak = date_zak.Substring(0, date_zak.Length - 8);
-                            int kol_tov_ = Int32.Parse(kol_tov);
-                            int cost_tov_ = Int32.Parse(cost_tov);
-                            int summ_zak_ = kol_tov_ * cost_tov_;
-                            string summ_zak = Convert.ToString(summ_zak_);
-                            Console.WriteLine(naim_cli + " " + kol_tov + " " + summ_zak + " " + date_zak);
                         }
-                    }
+                }
+                if (check_1 == false)
+                { 
+                    Console.WriteLine("Товар не найден!");
+                }
+                if (check_2 == false)
+                {
+                    Console.WriteLine("Заказов нет!");
                 }
             }
             else if (y == top + 2)
             {
                 Console.WriteLine("Изменение контактного лица");
+                Console.WriteLine("Укажите наименование огранизации");
+
+                Console.WriteLine("Введите новое контакнтое лицо");
+
+                string? FIO_cli;
+                
+                naim_cli
+
             }
             else if (y == top + 3)
             {
                 Console.WriteLine("Золотой клиент");
             }
-            
+            path_file = " ";
+            kod_tov = " ";
+            kol_tov = " ";
+            kod_cli = " ";
+            naim_cli = " ";
+            cost_tov = " ";
+            date_zak = " ";
+            check_1 = false; 
+            check_2 = false;
+
             Console.WriteLine("ENTER - продолжение работы");
             Console.WriteLine("ESC - выход");
             key = Console.ReadKey().Key;
@@ -162,7 +192,7 @@ internal class Program
             if (key == ConsoleKey.Escape)
             {
                Console.WriteLine(y);
-               Console.WriteLine("Программа завершила работу. До свидания."); //Два П т.к по нажатию  ESC убирается первый символ 
+               Console.WriteLine("Программа завершила работу. До свидания."); 
                break;
             }
         }
