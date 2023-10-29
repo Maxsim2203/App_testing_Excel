@@ -162,11 +162,8 @@ internal class Program
             {
                 Console.WriteLine("Изменение контактного лица");
                 Console.WriteLine("Укажите наименование огранизации");
-
                 Console.WriteLine("Введите новое контакнтое лицо");
-
                 string? FIO_cli;
-                
                 naim_cli
 
             }
