@@ -196,7 +196,7 @@ internal class Program
                     }
                     if (check_2 == false)
                     {
-                        Console.WriteLine("Не верно");
+                        Console.WriteLine("Организация не найдена. Повторите попытку.");
                     }
                 }
                 Console.WriteLine("Изменения занесены в таблицу");
