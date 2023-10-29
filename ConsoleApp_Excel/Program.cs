@@ -165,23 +165,22 @@ internal class Program
                 Console.Clear();
                 Console.WriteLine("Укажите наименование огранизации");
                 XLWorkbook workbook;
-               // string? naim_cli = " ";
+               //string? naim_cli = " ";
                 string? FIO_cli = Console.ReadLine();
                 using (workbook = new XLWorkbook(path_file))
                 {  
                    
-                    // Получение первого листа из книги
+                    // Получение второго листа из книги
                     var worksheet_2 = workbook.Worksheet(2);
 
                     // Определение первой и последней строки в листе
                     var firstRow_2 = worksheet_2.FirstRowUsed();
                     var lastRow_2 = worksheet_2.LastRowUsed();
-                    // Находим на 1 листе ячейку с наименованием указанного товара и запоминаем код и стоимость товара
+                    // Находим на 2 листе ячейку с наименованием указанного товара и запоминаем код и стоимость товара
                     foreach (var row in worksheet_2.Rows(firstRow_2.RowNumber(), lastRow_2.RowNumber()))
                     {
                         if (row.Cell("B").Value.ToString() == naim_cli)
                         {
-                            //check_1 = true;
                            naim_cli = row.Cell("B").Value.ToString();
                            FIO_cli = row.Cell("D").Value.ToString();
                            Console.WriteLine(FIO_cli);
@@ -190,19 +189,17 @@ internal class Program
                        {
                            // Console.WriteLine(FIO_cli);
                        }
-                        foreach (var row_2 in worksheet_2.Rows(firstRow_2.RowNumber(), lastRow_2.RowNumber()))
-                        {
-                            if (row_2.Cell("D").Value.ToString() == FIO_cli)
-                            {
-                                naim_cli = row_2.Cell("B").Value.ToString();
-                                Console.WriteLine(FIO_cli); 
-                            }
-                        }
-                        Console.WriteLine(naim_cli);
-
-
+                        //foreach (var row_2 in worksheet_2.Rows(firstRow_2.RowNumber(), lastRow_2.RowNumber()))
+                        //{
+                        //    if (row_2.Cell("D").Value.ToString() == FIO_cli)
+                        //    {
+                        //        naim_cli = row_2.Cell("B").Value.ToString();
+                        //        Console.WriteLine(naim_cli); 
+                        //    }
+                        //}
+                        //Console.WriteLine(naim_cli);
                     }
-                    Console.WriteLine(naim_cli);
+                    Console.WriteLine(FIO_cli);
                     
                     //Console.WriteLine(naim_cli, " " + FIO_cli);            
                     //naim_cli
