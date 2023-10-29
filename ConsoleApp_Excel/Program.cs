@@ -27,6 +27,7 @@ internal class Program
         string? naim_cli = " ";
         string? cost_tov = " ";
         string? date_zak = " ";
+        string? FIO_cli = " "; 
         bool check_1 = false; //Контроль наличия товара
         bool check_2 = false; //Контроль наличия заказа
         while (ind == true)
@@ -163,23 +164,21 @@ internal class Program
             {
                 path_file = @"D:\1.xlsx";
                 Console.Clear();
-                Console.WriteLine("Укажите наименование огранизации");
+                Console.WriteLine("Укажите наименование огранизации: ");
+                string? nai_cli = Console.ReadLine();
                 XLWorkbook workbook;
                //string? naim_cli = " ";
-                string? FIO_cli = Console.ReadLine();
                 using (workbook = new XLWorkbook(path_file))
                 {  
-                   
                     // Получение второго листа из книги
                     var worksheet_2 = workbook.Worksheet(2);
-
                     // Определение первой и последней строки в листе
                     var firstRow_2 = worksheet_2.FirstRowUsed();
                     var lastRow_2 = worksheet_2.LastRowUsed();
-                    // Находим на 2 листе ячейку с наименованием указанного товара и запоминаем код и стоимость товара
+                    // Находим на 2 листе ячейку с наименованием организации
                     foreach (var row in worksheet_2.Rows(firstRow_2.RowNumber(), lastRow_2.RowNumber()))
                     {
-                        if (row.Cell("B").Value.ToString() == naim_cli)
+                        if (row.Cell("B").Value.ToString() == nai_cli)
                         {
                            naim_cli = row.Cell("B").Value.ToString();
                            FIO_cli = row.Cell("D").Value.ToString();
