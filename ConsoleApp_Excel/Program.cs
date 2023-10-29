@@ -42,7 +42,7 @@ internal class Program
             Console.WriteLine("1. Указать путь к файлу с данными");
             Console.WriteLine("2. Указать наименование товара и вывести список клентов, заказавших товар");
             Console.WriteLine("3. Изменить контактное лицо клиента");
-            Console.WriteLine("4. Определить золотого клиента");
+            Console.WriteLine("4. Определить золотого клиента - Извините доделать не успел :(");
 
             int down = Console.CursorTop;
 
