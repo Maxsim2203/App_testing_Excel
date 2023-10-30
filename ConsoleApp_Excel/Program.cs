@@ -1,4 +1,4 @@
-﻿// Для работы сорхраните файл в путь "D:\1.xlsx"
+﻿// Для работы разместите файл в "D:\1.xlsx"
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
