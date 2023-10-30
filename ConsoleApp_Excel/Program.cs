@@ -29,6 +29,8 @@ internal class Program
         string? date_zak = " ";
         string? FIO_cli = " ";
         string? s = " ";
+        int Max = 0;
+        string? naim_cli_max = " ";
         //var Cell_new = "";
 
         bool check_1 = false; //Контроль наличия товара
@@ -43,7 +45,7 @@ internal class Program
             Console.WriteLine("1. Указать путь к файлу с данными");
             Console.WriteLine("2. Указать наименование товара и вывести список клентов, заказавших товар");
             Console.WriteLine("3. Изменить контактное лицо клиента");
-            Console.WriteLine("4. Определить золотого клиента - Извините доделать не успел :(");
+            Console.WriteLine("4. Определить золотого клиента");
 
             int down = Console.CursorTop;
 
@@ -259,21 +261,16 @@ internal class Program
                     workbook.Save();
                     foreach (var row_2 in worksheet_2.Rows(firstRow_2.RowNumber() + 1, lastRow_2.RowNumber()))
                     {
-                        string Max = row_2.Cell("E").Value.ToString();
-                        int Max_ = Int32.Parse(Max);
-                        if (Max_ > row_2.Cell("E").Value)
+                            naim_cli = row_2.Cell("B").Value.ToString();
+                            string a = row_2.Cell("E").Value.ToString();
+                            int a_ = Int32.Parse(a);
+                        if (a_ > Max)
                         {
-                            Console.WriteLine("Золотой клиент");
+                            naim_cli_max = naim_cli;
+                            Max = a_;
                         }
-                        else
-                        {
-                            Console.WriteLine("Золтого клиента не существует");
-                        }
-
-
-                    
                     }
-
+                Console.WriteLine("Золотой клиент: " + naim_cli_max);
                 }
             }
 
@@ -286,6 +283,7 @@ internal class Program
             date_zak = " ";
             check_1 = false;
             check_2 = false;
+            Max = 0;
 
             Console.WriteLine("ENTER - продолжение работы");
             Console.WriteLine("ESC - выход");
