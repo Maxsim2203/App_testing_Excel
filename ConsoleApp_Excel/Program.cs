@@ -28,6 +28,7 @@ internal class Program
         string? cost_tov = " ";
         string? date_zak = " ";
         string? FIO_cli = " ";
+        string? s = " ";
         //var Cell_new = "";
 
         bool check_1 = false; //Контроль наличия товара
@@ -126,9 +127,9 @@ internal class Program
                         if (row_3.Cell("B").Value.ToString() == kod_tov)
                         {
                             check_2 = true;
-                            kod_cli = row_3.Cell("C").Value.ToString();  
-                            kol_tov = row_3.Cell("E").Value.ToString();  
-                            date_zak = row_3.Cell("F").Value.ToString(); 
+                            kod_cli = row_3.Cell("C").Value.ToString();
+                            kol_tov = row_3.Cell("E").Value.ToString();
+                            date_zak = row_3.Cell("F").Value.ToString();
 
                             // Находим на 2 листе ячейку с кодом клиента и  запоминаем наименование клиента
                             var worksheet_2 = workbook.Worksheet(2);
@@ -169,9 +170,9 @@ internal class Program
                 Console.WriteLine("Укажите наименование огранизации: ");
                 string? nai_cli = Console.ReadLine();
                 XLWorkbook workbook;
-               //string? naim_cli = " ";
+                //string? naim_cli = " ";
                 using (workbook = new XLWorkbook(path_file))
-                {  
+                {
                     // Получение второго листа из книги
                     var worksheet_2 = workbook.Worksheet(2);
                     // Определение первой и последней строки в листе
@@ -183,15 +184,15 @@ internal class Program
                         if (row.Cell("B").Value.ToString() == nai_cli)
                         {
                             check_2 = true;
-                           naim_cli = row.Cell("B").Value.ToString();
-                           FIO_cli = row.Cell("D").Value.ToString();
-                           //var Cell_new = row.Cell("D");
-                           Console.WriteLine(FIO_cli);
-                           //Console.WriteLine(Cell_new);
-                           Console.WriteLine("Укажите ФИО нового контактного лица");
-                           string? FIO_new_cli = Console.ReadLine();
-                           row.Cell("D").Value = FIO_new_cli;
-                           workbook.Save();
+                            naim_cli = row.Cell("B").Value.ToString();
+                            FIO_cli = row.Cell("D").Value.ToString();
+                            //var Cell_new = row.Cell("D");
+                            Console.WriteLine(FIO_cli);
+                            //Console.WriteLine(Cell_new);
+                            Console.WriteLine("Укажите ФИО нового контактного лица");
+                            string? FIO_new_cli = Console.ReadLine();
+                            row.Cell("D").Value = FIO_new_cli;
+                            workbook.Save();
                         }
                     }
                     if (check_2 == false)
@@ -200,15 +201,82 @@ internal class Program
                     }
                     else
                     {
-                     Console.WriteLine("Изменения занесены в таблицу");
+                        Console.WriteLine("Изменения занесены в таблицу");
                     }
                 }
-               
+
             }
             else if (y == top + 3)
             {
-                Console.WriteLine("Золотой клиент");
+                //Console.WriteLine("Золотой клиент");
+                path_file = @"D:\1.xlsx";
+                XLWorkbook workbook;
+                using (workbook = new XLWorkbook(path_file))
+                {
+                    // Получение первого, второго  и третьего листа из книги
+                    var worksheet_2 = workbook.Worksheet(2);
+                    var worksheet_3 = workbook.Worksheet(3);
+                    var worksheet_1 = workbook.Worksheet(1);
+                    // Определение первой и последней строки во втором листе
+                    var firstRow_2 = worksheet_2.FirstRowUsed();
+                    var lastRow_2 = worksheet_2.LastRowUsed();
+                    // Определение первой и последней строки в третьем листе
+                    var firstRow_3 = worksheet_3.FirstRowUsed();
+                    var lastRow_3 = worksheet_3.LastRowUsed();
+                    // Определение первой и последней строки в первом листе
+                    var firstRow_1 = worksheet_1.FirstRowUsed();
+                    var lastRow_1 = worksheet_1.LastRowUsed();
+
+                    // Находим на 2 листе ячейку с наименованием организации
+                    foreach (var row_2 in worksheet_2.Rows(firstRow_2.RowNumber() + 1, lastRow_2.RowNumber()))
+                    {
+                        row_2.Cell("E").Value = 0;
+                        workbook.Save();
+                        kod_cli = row_2.Cell("A").Value.ToString();
+                        foreach (var row_3 in worksheet_3.Rows(firstRow_3.RowNumber() + 1, lastRow_3.RowNumber()))
+                        {
+                            if (row_3.Cell("C").Value.ToString() == kod_cli)
+                            {
+                                kol_tov = row_3.Cell("E").Value.ToString();
+                                kod_tov = row_3.Cell("B").Value.ToString();
+                                foreach (var row_1 in worksheet_1.Rows(firstRow_1.RowNumber() + 1, lastRow_1.RowNumber()))
+                                {
+                                    if (row_1.Cell("A").Value.ToString() == kod_tov)
+                                    {
+                                        cost_tov = row_1.Cell("D").Value.ToString();
+                                    }
+                                }
+                            int kol_tov_ = Int32.Parse(kol_tov);
+                            int cost_tov_ = Int32.Parse(cost_tov);
+                            int summ_zak_ = kol_tov_ * cost_tov_;
+                            s = row_2.Cell("E").Value.ToString();
+                            int ss = Int32.Parse(s);
+                            row_2.Cell("E").Value = ss + summ_zak_;
+                            //key = Console.ReadKey().Key;
+                            }
+                        }
+                    }
+                    workbook.Save();
+                    foreach (var row_2 in worksheet_2.Rows(firstRow_2.RowNumber() + 1, lastRow_2.RowNumber()))
+                    {
+                        string Max = row_2.Cell("E").Value.ToString();
+                        int Max_ = Int32.Parse(Max);
+                        if (Max_ > row_2.Cell("E").Value)
+                        {
+                            Console.WriteLine("Золотой клиент");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Золтого клиента не существует");
+                        }
+
+
+                    
+                    }
+
+                }
             }
+
             path_file = " ";
             kod_tov = " ";
             kol_tov = " ";
@@ -216,7 +284,7 @@ internal class Program
             naim_cli = " ";
             cost_tov = " ";
             date_zak = " ";
-            check_1 = false; 
+            check_1 = false;
             check_2 = false;
 
             Console.WriteLine("ENTER - продолжение работы");
@@ -226,10 +294,14 @@ internal class Program
             Console.Clear();
             if (key == ConsoleKey.Escape)
             {
-               Console.WriteLine(y);
-               Console.WriteLine("Программа завершила работу. До свидания."); 
-               break;
+                Console.WriteLine(y);
+                Console.WriteLine("Программа завершила работу. До свидания.");
+                break;
             }
         }
     }
 }
+
+//Console.Write(ss);
+//Console.Write("  ");
+//Console.WriteLine(row_2.Cell("E").Value);
