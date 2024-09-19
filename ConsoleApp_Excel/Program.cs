@@ -314,7 +314,7 @@ internal class Program
                 Console.WriteLine(y);
                 Console.WriteLine("Программа завершила работу. До свидания.");
                 break;
-            }
+           }
         }
     }
 }
