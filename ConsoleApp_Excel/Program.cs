@@ -43,7 +43,6 @@ internal class Program
             Console.WriteLine("3. Изменить контактное лицо клиента");
             Console.WriteLine("4. Определить золотого клиента");
             Console.WriteLine("5. Выход из программы");
-
             int down = Console.CursorTop;
 
             Console.CursorSize = 100;
